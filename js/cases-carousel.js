@@ -38,14 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
             track.style.msOverflowStyle = 'none';
             track.style.scrollbarWidth = 'none';
             
-            // Важно для мобильной версии - устанавливаем ширину трека
-            // Достаточно большую, чтобы вместить все карточки
-            const totalWidth = allCards.length * 335; // 320px ширина + 15px отступ
+            // Важно для мобильной версии - адаптивная ширина трека
+            // Рассчитываем ширину карточки адаптивно
+            const viewportWidth = window.innerWidth;
+            const cardWidth = Math.min(Math.max(viewportWidth * 0.85, 300), 360); // 85% ширины экрана, но не меньше 300px и не больше 360px
+            const marginRight = 15;
+            const totalWidth = allCards.length * (cardWidth + marginRight);
+            
+            // Устанавливаем ширину трека
             track.style.width = `${totalWidth}px`;
             track.style.minWidth = `${totalWidth}px`;
 
             // Добавляем отступы для центрирования
-            const cardWidth = 320; // Фиксированная ширина карточки
             const padding = (carousel.offsetWidth - cardWidth) / 2;
             container.style.paddingLeft = `${Math.max(padding, 15)}px`;
             container.style.paddingRight = `${Math.max(padding, 15)}px`;
@@ -54,14 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
             allCards.forEach(card => {
                 card.style.scrollSnapAlign = 'center';
                 card.style.flexShrink = '0';
-                card.style.width = '320px';
-                card.style.marginRight = '15px';
+                card.style.width = `${cardWidth}px`;
+                card.style.marginRight = `${marginRight}px`;
                 card.style.display = 'block'; // Важно: убедиться, что карточки видимы
             });
 
             // Скрываем кнопки навигации в мобильной версии
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
+            
+            // Добавляем обработчик скролла для плавного свайпа
+            track.addEventListener('touchstart', handleTouchStart, { passive: true });
+            track.addEventListener('touchmove', handleTouchMove, { passive: true });
             
             // Прокручиваем к первому элементу с небольшой задержкой
             setTimeout(() => {
@@ -139,28 +147,81 @@ document.addEventListener('DOMContentLoaded', () => {
         goToSlide(currentIndex + 1);
     });
 
-    // Поддержка свайпов на мобильных устройствах
+    // Улучшенная поддержка свайпов на мобильных устройствах
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+    let isSwiping = false;
+    let isScrollingVertically = false;
 
+    // Улучшенный обработчик начала касания
     track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        isSwiping = false;
+        isScrollingVertically = false;
     }, { passive: true });
 
+    // Добавляем обработчик движения пальца
+    track.addEventListener('touchmove', (e) => {
+        if (isScrollingVertically) return;
+        
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = touchStartX - currentX;
+        const diffY = touchStartY - currentY;
+        
+        // Определяем, является ли это вертикальным скроллом
+        if (!isSwiping && !isScrollingVertically) {
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Горизонтальное движение - свайп
+                isSwiping = true;
+            } else {
+                // Вертикальное движение - скролл страницы
+                isScrollingVertically = true;
+            }
+        }
+    }, { passive: true });
+
+    // Обработчик окончания касания
     track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
+        if (isScrollingVertically) return;
+        
+        touchEndX = e.changedTouches[0].clientX;
+        touchEndY = e.changedTouches[0].clientY;
+        
+        if (isSwiping) {
+            handleSwipe();
+        }
     }, { passive: true });
 
     function handleSwipe() {
-        const swipeThreshold = 50; // Минимальное расстояние для свайпа
-        if (touchEndX < touchStartX - swipeThreshold) {
+        const swipeThreshold = 40; // Уменьшаем порог для более чувствительного свайпа
+        const diffX = touchStartX - touchEndX;
+        
+        if (diffX > swipeThreshold) {
             // Свайп влево - следующий слайд
-            goToSlide(currentIndex + 1);
-        }
-        if (touchEndX > touchStartX + swipeThreshold) {
+            if (isMobile) {
+                // В мобильной версии плавно прокручиваем к следующей карточке
+                const nextCard = allCards[Math.min(currentIndex + 1, allCards.length - 1)];
+                if (nextCard) {
+                    nextCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            } else {
+                goToSlide(currentIndex + 1);
+            }
+        } else if (diffX < -swipeThreshold) {
             // Свайп вправо - предыдущий слайд
-            goToSlide(currentIndex - 1);
+            if (isMobile) {
+                // В мобильной версии плавно прокручиваем к предыдущей карточке
+                const prevCard = allCards[Math.max(currentIndex - 1, 0)];
+                if (prevCard) {
+                    prevCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            } else {
+                goToSlide(currentIndex - 1);
+            }
         }
     }
 
