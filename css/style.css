@@ -75,7 +75,11 @@ h2 {
 }
 
 section {
-    padding: 6rem 0;
+    padding: 4rem 0;
+}
+
+#services {
+    padding-top: 2rem;
 }
 
 .btn {
@@ -610,7 +614,13 @@ section {
 .service-card i {
     width: 48px;
     height: 48px;
-    color: var(--accent-blue);
+    color: var(--accent-gold);
+    transition: all 0.3s ease;
+}
+
+/* Стилизация SVG-иконок Lucide с градиентом как у кнопки */
+.service-card [data-lucide], .benefit-item [data-lucide] {
+    stroke: url(#icon-gradient) !important;
 }
 
 .service-card__list {
@@ -662,10 +672,11 @@ section {
 }
 
 .benefit-item i {
-    color: var(--accent-khaki);
     width: 28px;
     height: 28px;
     flex-shrink: 0;
+    color: var(--accent-gold);
+    transition: all 0.3s ease;
 }
 
 .benefit-item p {
@@ -809,6 +820,7 @@ section {
         overflow-x: auto; 
         -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
         scrollbar-width: none; /* Скрываем скроллбар в Firefox */
+        width: 100%;
     }
 
     .cases-carousel__container::-webkit-scrollbar {
@@ -819,6 +831,8 @@ section {
         /* Уменьшаем ширину карточки для мобильных и запрещаем сжатие */
         width: 320px; 
         flex-shrink: 0;
+        scroll-snap-align: center;
+        margin-right: 15px;
     }
 }
 
@@ -875,7 +889,9 @@ section {
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
         padding: 10px 0;
-        margin: 0 -10px;
+        margin: 0;
+        width: auto;
+        min-width: 100%;
     }
     
     .cases-carousel__track::-webkit-scrollbar {
@@ -901,8 +917,10 @@ section {
     }
     
     .cases-carousel__container {
-        overflow: visible;
+        overflow-x: auto;
         width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
 }
 
@@ -1305,7 +1323,7 @@ section {
     }
 
     section {
-        padding: 3rem 0;
+        padding: 2.5rem 0;
     }
     
     #services {

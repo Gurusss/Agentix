@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             track.style.webkitOverflowScrolling = 'touch';
             track.style.msOverflowStyle = 'none';
             track.style.scrollbarWidth = 'none';
+            track.style.width = 'auto';
+            track.style.minWidth = '100%';
 
             // Динамический расчет отступов для центрирования
             const cardWidth = allCards[1] ? allCards[1].offsetWidth : 340; // Увеличили ширину карточки
@@ -45,18 +47,31 @@ document.addEventListener('DOMContentLoaded', () => {
             allCards.forEach(card => {
                 card.style.scrollSnapAlign = 'center';
                 card.style.flexShrink = '0';
+                card.style.marginRight = '15px';
+                card.style.width = '320px';
             });
 
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
+            
+            // Прокручиваем к первому элементу
+            setTimeout(() => {
+                if (allCards[1]) {
+                    allCards[1].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }, 100);
         } else {
             // На десктопе управляем через transform
             track.style.overflowX = 'visible';
             track.style.scrollSnapType = 'none';
             track.style.paddingLeft = '0';
             track.style.paddingRight = '0';
+            track.style.width = '';
+            track.style.minWidth = '';
+            
             allCards.forEach(card => {
                 card.style.scrollSnapAlign = 'none';
+                card.style.marginRight = '';
             });
             prevButton.style.display = 'flex';
             nextButton.style.display = 'flex';
