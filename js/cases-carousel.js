@@ -196,17 +196,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
+    // Отслеживание текущей карточки в мобильной версии
+    let mobileCurrentIndex = 1; // Начинаем с первой карточки
+    let mobileCardCount = cards.length; // Количество оригинальных карточек
+    
     function handleSwipe() {
-        const swipeThreshold = 40; // Уменьшаем порог для более чувствительного свайпа
+        const swipeThreshold = 40; // Порог для свайпа
         const diffX = touchStartX - touchEndX;
         
         if (diffX > swipeThreshold) {
             // Свайп влево - следующий слайд
             if (isMobile) {
-                // В мобильной версии плавно прокручиваем к следующей карточке
-                const nextCard = allCards[Math.min(currentIndex + 1, allCards.length - 1)];
-                if (nextCard) {
-                    nextCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                // Увеличиваем индекс и проверяем цикличность
+                mobileCurrentIndex++;
+                if (mobileCurrentIndex >= mobileCardCount + 1) {
+                    // Если дошли до конца, возвращаемся к первой карточке
+                    mobileCurrentIndex = 1;
+                    // Мгновенный переход к первой карточке
+                    allCards[1].scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+                } else {
+                    // Плавный переход к следующей карточке
+                    allCards[mobileCurrentIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
             } else {
                 goToSlide(currentIndex + 1);
@@ -214,10 +224,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (diffX < -swipeThreshold) {
             // Свайп вправо - предыдущий слайд
             if (isMobile) {
-                // В мобильной версии плавно прокручиваем к предыдущей карточке
-                const prevCard = allCards[Math.max(currentIndex - 1, 0)];
-                if (prevCard) {
-                    prevCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                // Уменьшаем индекс и проверяем цикличность
+                mobileCurrentIndex--;
+                if (mobileCurrentIndex < 1) {
+                    // Если дошли до начала, переходим к последней карточке
+                    mobileCurrentIndex = mobileCardCount;
+                    // Плавный переход к последней карточке
+                    allCards[mobileCurrentIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                } else {
+                    // Плавный переход к предыдущей карточке
+                    allCards[mobileCurrentIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
             } else {
                 goToSlide(currentIndex - 1);

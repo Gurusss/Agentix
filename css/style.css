@@ -729,7 +729,7 @@ section {
 }
 
 .case-card__overlay {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 2rem 2rem; /* Увеличенный отступ снизу */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -774,7 +774,7 @@ section {
     color: var(--white-color);
     margin: 0 0 0.8rem 0;
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 600; /* Уменьшенная жирность заголовка */
     line-height: 1.2;
 }
 
@@ -782,7 +782,7 @@ section {
     color: rgba(255, 255, 255, 0.8);
     font-size: 1rem;
     line-height: 1.5;
-    margin-bottom: 0;
+    margin-bottom: 1rem; /* Добавляем отступ снизу для текста */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
