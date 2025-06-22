@@ -28,17 +28,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isMobile) {
             // На мобильных устройствах используем нативный скролл
             track.style.transform = 'none';
+            track.style.display = 'flex';
+            track.style.flexWrap = 'nowrap';
             track.style.overflowX = 'auto';
             track.style.scrollSnapType = 'x mandatory';
+            track.style.webkitOverflowScrolling = 'touch';
+            track.style.msOverflowStyle = 'none';
+            track.style.scrollbarWidth = 'none';
 
             // Динамический расчет отступов для центрирования
-            const cardWidth = allCards[1] ? allCards[1].offsetWidth : 320;
+            const cardWidth = allCards[1] ? allCards[1].offsetWidth : 340; // Увеличили ширину карточки
             const padding = (carousel.offsetWidth - cardWidth) / 2;
-            track.style.paddingLeft = `${padding}px`;
-            track.style.paddingRight = `${padding}px`;
+            track.style.paddingLeft = `${Math.max(padding, 15)}px`;
+            track.style.paddingRight = `${Math.max(padding, 15)}px`;
 
             allCards.forEach(card => {
                 card.style.scrollSnapAlign = 'center';
+                card.style.flexShrink = '0';
             });
 
             prevButton.style.display = 'none';

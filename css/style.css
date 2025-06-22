@@ -4,8 +4,10 @@
     --text-color: #111827;
     --white-color: #FFFFFF;
     --accent-khaki: #D5D9C4;
+    --accent-khaki-rgb: 213, 217, 196; /* RGB значение для хаки */
     --accent-graphite: #374151;
     --accent-blue: #BFDBFE;
+    --accent-blue-rgb: 191, 219, 254; /* RGB значение для голубого */
     --accent-gold: #D4AF37;   /* Золотой цвет для иконок */
 
     --font-family: 'Inter', sans-serif;
@@ -101,14 +103,16 @@ section {
 }
 
 .btn--secondary {
-    background-color: transparent;
-    color: var(--white-color);
-    border-color: var(--white-color);
+    background: linear-gradient(90deg, var(--accent-khaki), var(--accent-blue));
+    color: var(--primary-color);
+    border: none;
+    font-weight: 600;
 }
 
 .btn--secondary:hover {
-    background-color: var(--white-color);
-    color: var(--primary-color);
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-khaki));
+    box-shadow: 0 4px 15px rgba(var(--accent-khaki-rgb), 0.3);
+    transform: translateY(-3px);
 }
 
 /* Header & Navigation */
@@ -853,13 +857,29 @@ section {
 /* Карточка кейса - мобильные стили */
 @media (max-width: 767px) {
     .case-card {
-        width: 320px; 
-        height: 420px; /* Уменьшаем высоту карточки для мобильной версии */
+        width: 340px; /* Увеличиваем ширину карточки для мобильной версии */
+        height: 440px; /* Увеличиваем высоту карточки для мобильной версии */
         flex-shrink: 0;
+        margin-right: 15px; /* Добавляем отступ между карточками */
     }
     
     .case-card img {
-        height: 160px; /* Уменьшаем высоту изображения для мобильной версии */
+        height: 180px; /* Увеличиваем высоту изображения для мобильной версии */
+    }
+    
+    /* Стили для карусели в мобильной версии */
+    .cases-carousel__track {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        padding: 10px 0;
+        margin: 0 -10px;
+    }
+    
+    .cases-carousel__track::-webkit-scrollbar {
+        display: none; /* Скрываем скроллбар в Chrome/Safari */
     }
 }
 
@@ -873,6 +893,16 @@ section {
         padding: 1.2rem 1.5rem;
         flex-direction: column;
         justify-content: space-between;
+    }
+    
+    .case-card__overlay h3 {
+        font-size: 1.6rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .cases-carousel__container {
+        overflow: visible;
+        width: 100%;
     }
 }
 
@@ -1279,7 +1309,7 @@ section {
     }
     
     #services {
-        padding-top: 1.5rem;
+        padding-top: 0.5rem;
     }
 
     .header .container {
