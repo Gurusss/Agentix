@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isMobile) {
             // На мобильных устройствах используем нативный скролл
+            // Сбрасываем трансформацию и настраиваем скролл
             track.style.transform = 'none';
+            track.style.transition = 'none';
             track.style.display = 'flex';
             track.style.flexWrap = 'nowrap';
             track.style.overflowX = 'auto';
@@ -35,31 +37,38 @@ document.addEventListener('DOMContentLoaded', () => {
             track.style.webkitOverflowScrolling = 'touch';
             track.style.msOverflowStyle = 'none';
             track.style.scrollbarWidth = 'none';
-            track.style.width = 'auto';
-            track.style.minWidth = '100%';
+            
+            // Важно для мобильной версии - устанавливаем ширину трека
+            // Достаточно большую, чтобы вместить все карточки
+            const totalWidth = allCards.length * 335; // 320px ширина + 15px отступ
+            track.style.width = `${totalWidth}px`;
+            track.style.minWidth = `${totalWidth}px`;
 
-            // Динамический расчет отступов для центрирования
-            const cardWidth = allCards[1] ? allCards[1].offsetWidth : 340; // Увеличили ширину карточки
+            // Добавляем отступы для центрирования
+            const cardWidth = 320; // Фиксированная ширина карточки
             const padding = (carousel.offsetWidth - cardWidth) / 2;
-            track.style.paddingLeft = `${Math.max(padding, 15)}px`;
-            track.style.paddingRight = `${Math.max(padding, 15)}px`;
+            container.style.paddingLeft = `${Math.max(padding, 15)}px`;
+            container.style.paddingRight = `${Math.max(padding, 15)}px`;
 
+            // Настраиваем каждую карточку
             allCards.forEach(card => {
                 card.style.scrollSnapAlign = 'center';
                 card.style.flexShrink = '0';
-                card.style.marginRight = '15px';
                 card.style.width = '320px';
+                card.style.marginRight = '15px';
+                card.style.display = 'block'; // Важно: убедиться, что карточки видимы
             });
 
+            // Скрываем кнопки навигации в мобильной версии
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
             
-            // Прокручиваем к первому элементу
+            // Прокручиваем к первому элементу с небольшой задержкой
             setTimeout(() => {
                 if (allCards[1]) {
                     allCards[1].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
-            }, 100);
+            }, 300);
         } else {
             // На десктопе управляем через transform
             track.style.overflowX = 'visible';

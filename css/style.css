@@ -705,6 +705,7 @@ section {
     height: 450px; /* Фиксированная высота карточки */
     display: flex;
     flex-direction: column;
+    visibility: visible; /* Важно: всегда делать карточки видимыми */
 }
 
 .case-card:hover {
@@ -810,17 +811,21 @@ section {
 }
 
 @media (max-width: 767px) {
-    /* На мобильных JS управляет прокруткой, убираем лишние стили */
+    /* На мобильных JS управляет прокруткой */
     .cases-carousel {
         padding: 0;
+        overflow: visible; /* Важно: разрешаем видимость за пределами контейнера */
     }
 
     .cases-carousel__container {
         margin: 0;
         overflow-x: auto; 
+        overflow-y: visible;
         -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
         scrollbar-width: none; /* Скрываем скроллбар в Firefox */
         width: 100%;
+        position: relative; /* Для правильного позиционирования */
+        z-index: 1; /* Убедиться, что карусель находится над другими элементами */
     }
 
     .cases-carousel__container::-webkit-scrollbar {
@@ -883,15 +888,17 @@ section {
     
     /* Стили для карусели в мобильной версии */
     .cases-carousel__track {
-        display: flex;
+        display: flex !important; /* Важно: всегда отображать как flex */
         flex-wrap: nowrap;
         overflow-x: auto;
+        overflow-y: visible;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
         padding: 10px 0;
         margin: 0;
         width: auto;
         min-width: 100%;
+        transform: none !important; /* Важно: не применять трансформацию в мобильной версии */
     }
     
     .cases-carousel__track::-webkit-scrollbar {
