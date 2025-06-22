@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentix — AI-агенты, боты и автоматизация</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="mobile-menu__overlay"></div>
+    <nav class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu__close" aria-label="Закрыть меню">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18" stroke="#D5D9C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 6L18 18" stroke="#D5D9C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <ul class="mobile-menu__list">
+            <li><a href="#services" class="mobile-menu__link">Услуги</a></li>
+            <li><a href="#benefits" class="mobile-menu__link">Преимущества</a></li>
+            <li><a href="#cases" class="mobile-menu__link">Кейсы</a></li>
+            <li><a href="#contact" class="mobile-menu__link">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <header class="header">
+        <div class="container header__container">
+            <a href="#" class="header__logo">
+                <img src="assets/logo/logoAgetix.png" alt="Agentix Logo" class="header__logo-img">
+                <span class="header__logo-text">Agentix</span>
+            </a>
+            
+            <button class="header__burger-btn" aria-label="Открыть меню" aria-expanded="false" aria-controls="primary-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="header__nav-wrapper">
+                <nav class="header__nav" id="primary-navigation">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li>
+                        <li class="nav__item"><a href="#benefits" class="nav__link">Преимущества</a></li>
+                        <li class="nav__item"><a href="#cases" class="nav__link">Кейсы</a></li>
+                        <li class="nav__item"><a href="#contact" class="nav__link">Контакты</a></li>
+                    </ul>
+                </nav>
+                <button class="btn btn--primary header__cta">Получить прототип</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h1>AI-агенты. Боты. Автоматизация. Сайт за 4 часа.</h1>
+                    <p>Умные цифровые решения, которые работают сразу. Без технической головной боли.</p>
+                    <button class="btn btn--secondary">Получить первый вариант сайта — бесплатно</button>
+                </div>
+                <div class="hero__visual">
+                    <svg width="500" height="400" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- Gradient Definitions -->
+                            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#D5D9C4" stop-opacity="1" />
+                                <stop offset="100%" stop-color="#BFCBDA" stop-opacity="1" />
+                            </linearGradient>
+                            
+                            <!-- Glow Effect -->
+                            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        
+                        <!-- Abstract AI Symbol -->
+                        <g class="ai-symbol" transform="translate(150, 100)">
+                            <!-- Main Circle -->
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="url(#gradient1)" stroke-width="2" />
+                            
+                            <!-- Inner Elements -->
+                            <g class="ai-elements">
+                                <!-- Central Dot -->
+                                <circle cx="100" cy="100" r="12" fill="url(#gradient1)" filter="url(#glow)" />
+                                
+                                <!-- Orbiting Elements -->
+                                <g class="orbiting-elements">
+                                    <!-- Top Element -->
+                                    <g transform="translate(100, 40)">
+                                        <circle cx="0" cy="0" r="8" fill="#D5D9C4" />
+                                        <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="20s" repeatCount="indefinite" />
+                                    </g>
+                                    
+                                    <!-- Right Element -->
+                                    <g transform="translate(160, 100)">
+                                        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="#BFCBDA" transform="rotate(45)" />
+                                        <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="25s" repeatCount="indefinite" />
+                                    </g>
+                                    
+                                    <!-- Bottom Element -->
+                                    <g transform="translate(100, 160)">
+                                        <polygon points="0,-8 6.93,4 -6.93,4" fill="#D5D9C4" />
+                                        <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="30s" repeatCount="indefinite" />
+                                    </g>
+                                    
+                                    <!-- Left Element -->
+                                    <g transform="translate(40, 100)">
+                                        <rect x="-5" y="-5" width="10" height="10" rx="5" fill="#BFCBDA" />
+                                        <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="35s" repeatCount="indefinite" />
+                                    </g>
+                                </g>
+                                
+                                <!-- Connection Lines -->
+                                <g class="connection-lines">
+                                    <line x1="100" y1="100" x2="100" y2="40" stroke="url(#gradient1)" stroke-width="1" opacity="0.7" />
+                                    <line x1="100" y1="100" x2="160" y2="100" stroke="url(#gradient1)" stroke-width="1" opacity="0.7" />
+                                    <line x1="100" y1="100" x2="100" y2="160" stroke="url(#gradient1)" stroke-width="1" opacity="0.7" />
+                                    <line x1="100" y1="100" x2="40" y2="100" stroke="url(#gradient1)" stroke-width="1" opacity="0.7" />
+                                </g>
+                                
+                                <!-- Decorative Elements -->
+                                <g class="decorative-elements">
+                                    <circle cx="100" cy="100" r="60" fill="none" stroke="url(#gradient1)" stroke-width="1" stroke-dasharray="3 3" opacity="0.5" />
+                                    <circle cx="100" cy="100" r="40" fill="none" stroke="url(#gradient1)" stroke-width="1" stroke-dasharray="2 4" opacity="0.3" />
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Наши услуги</h2>
+                <div class="services__grid bento-grid">
+                    <div class="service-card bento-item bento-item--large">
+                        <i data-lucide="layout-template"></i>
+                        <h3>Разработка сайтов</h3>
+                        <p>Современные и быстрые сайты, которые продают.</p>
+                    </div>
+                    <div class="service-card bento-item">
+                        <i data-lucide="send"></i>
+                        <h3>Telegram-боты</h3>
+                        <ul class="service-card__list">
+                            <li>Прием заказов</li>
+                            <li>Уведомления</li>
+                            <li>Интеграция с CRM</li>
+                        </ul>
+                    </div>
+                    <div class="service-card bento-item">
+                        <i data-lucide="brain-circuit"></i>
+                        <h3>AI-агенты</h3>
+                        <ul class="service-card__list">
+                            <li>Чат-боты с ИИ</li>
+                            <li>Анализ данных</li>
+                            <li>Персонализация</li>
+                        </ul>
+                    </div>
+                    <div class="service-card bento-item bento-item--large">
+                        <i data-lucide="workflow"></i>
+                        <h3>Автоматизация процессов</h3>
+                        <p>Освободим ваше время от рутины.</p>
+                    </div>
+                    <div class="service-card bento-item">
+                        <i data-lucide="file-code"></i>
+                        <h3>Скрипты</h3>
+                        <ul class="service-card__list">
+                            <li>Парсинг данных</li>
+                            <li>Автоотчеты</li>
+                        </ul>
+                    </div>
+                    <div class="service-card bento-item">
+                        <i data-lucide="plug-zap"></i>
+                        <h3>Интеграции</h3>
+                        <ul class="service-card__list">
+                            <li>Интеграции API</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="benefits">
+            <div class="container">
+                <h2>Преимущества работы с нами</h2>
+                <div class="benefits__grid">
+                    <div class="benefit-item">
+                        <i data-lucide="check-circle-2"></i>
+                        <p>Сайт за 4 часа — без потери качества</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i data-lucide="check-circle-2"></i>
+                        <p>Прототип — до оплаты</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i data-lucide="check-circle-2"></i>
+                        <p>Рост заявок через UX и автоворонки</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i data-lucide="check-circle-2"></i>
+                        <p>Интеграция с Telegram и CRM сразу</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i data-lucide="check-circle-2"></i>
+                        <p>Без технической боли: всё под ключ</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i data-lucide="check-circle-2"></i>
+                        <p>Оптимизация под малый бизнес с результатом</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cases" class="cases">
+            <div class="container">
+                <h2>Примеры наших работ</h2>
+                <p>Здесь вы можете увидеть наши последние проекты</p>
+                
+                <div class="cases-carousel">
+                    <button class="cases-carousel__button cases-carousel__button--prev" aria-label="Предыдущий слайд">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="#D5D9C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="cases-carousel__container">
+                        <div class="cases-carousel__track">
+                            <div class="case-card">
+                                <img src="assets/portfolio/project1/pr1.png" alt="Пример проекта 1">
+                                <div class="case-card__overlay">
+                                    <div class="case-card__header">
+                                        <span class="case-card__tag">Платформа</span>
+                                        <a href="#" class="case-card__link">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.33337 12.6667L12.6667 3.33334" stroke="#D5D9C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M3.33337 3.33334H12.6667V12.6667" stroke="#D5D9C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <h3>CryptoAcademy</h3>
+                                    <p>Обучающая платформа для криптотрейдеров с интерактивными курсами и личным кабинетом.</p>
+                                </div>
+                            </div>
+                            <div class="case-card">
+                                <img src="assets/portfolio/project2/trustfx2.png" alt="Форекс брокер">
+                                <div class="case-card__overlay">
+                                    <div class="case-card__header">
+                                        <span class="case-card__tag">Сайт</span>
+                                        <a href="#" class="case-card__link">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.33337 12.6667L12.6667 3.33334" stroke="#D5D9C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M3.33337 3.33334H12.6667V12.6667" stroke="#D5D9C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <h3>TrustFX</h3>
+                                    <p>Разработка сайта для форекс брокера с личным кабинетом и интеграцией с трейдинговыми платформами.</p>
+                                </div>
+                            </div>
+                            <div class="case-card">
+                                <img src="assets/portfolio/project3/vela.png" alt="Телеграм бот для кофейни">
+                                <div class="case-card__overlay">
+                                    <div class="case-card__header">
+                                        <span class="case-card__tag">Сайт</span>
+                                        <a href="https://yasmin2.vercel.app/" target="_blank" class="case-card__link">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.33337 12.6667L12.6667 3.33334" stroke="#D5D9C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M3.33337 3.33334H12.6667V12.6667" stroke="#D5D9C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <h3>VelaEstate</h3>
+                                    <p>Разработка сайта для агентства недвижимости с каталогом объектов и фильтрами поиска.</p>
+                                </div>
+                            </div>
+                            <div class="case-card">
+                                <img src="assets/portfolio/project4/unique.png" alt="Мобильное меню для ресторана">
+                                <div class="case-card__overlay">
+                                    <div class="case-card__header">
+                                        <span class="case-card__tag">Меню</span>
+                                        <a href="https://menu-unique.vercel.app/index.html" class="case-card__link">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M3.33337 12.6667L12.6667 3.33334" stroke="#D5D9C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M3.33337 3.33334H12.6667V12.6667" stroke="#D5D9C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <h3>Unique Restaurant</h3>
+                                    <p>Разработка интерактивного мобильного меню для ресторана с QR-кодами на столах и удобным интерфейсом.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="cases-carousel__button cases-carousel__button--next" aria-label="Следующий слайд">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="#D5D9C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Оставьте заявку</h2>
+                <p class="contact__subtitle">Оставьте заявку — я свяжусь с вами в течение дня<br>и предложу оптимальное решение для вашего бизнеса</p>
+                <form class="contact__form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="telegram" name="telegram" placeholder="Ваш Telegram (например, @username)" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder="Кратко опишите вашу задачу"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Получить бесплатный вариант сайта</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__logo">
+                <!-- Логотип -->
+            </div>
+            <div class="footer__contacts">
+                <p>Email: <a href="mailto:hello@agentix.pro">hello@agentix.pro</a></p>
+                <p>Telegram: <a href="https://t.me/agentix_studio" target="_blank">@agentix_studio</a></p>
+            </div>
+            <div class="footer__slogan">
+                <p><em>Agentix — умные решения, которые работают</em></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/cases-carousel.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
