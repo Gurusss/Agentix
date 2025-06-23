@@ -383,7 +383,7 @@ section {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
+    gap: 1rem;
     align-items: flex-start;
 }
 
@@ -391,11 +391,77 @@ section {
     font-size: 1.25rem;
     color: var(--white-color);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
     transition: color 0.3s ease;
+    letter-spacing: 0.02em;
 }
 .mobile-menu__link:hover {
-    color: var(--accent-khaki);
+    background: linear-gradient(90deg, var(--accent-khaki), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Стили для разделителей в мобильном меню */
+.mobile-menu__divider {
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(213, 217, 196, 0.1), rgba(191, 219, 254, 0.1));
+    margin: 0.2rem 0;
+}
+
+/* Стили для блока социальных сетей */
+.mobile-menu__social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(213, 217, 196, 0.1);
+    width: 100%;
+    justify-content: center;
+}
+
+/* Стили для иконок социальных сетей */
+.mobile-menu__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(10, 16, 26, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-menu__social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(213, 217, 196, 0.1), rgba(191, 219, 254, 0.1));
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu__social-link:hover::before {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.mobile-menu__social-link svg {
+    stroke: url(#icon-gradient) !important;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu__social-link:hover svg {
+    transform: scale(1.1);
+    stroke-width: 2.2;
 }
 
 .header__cta {
@@ -610,7 +676,11 @@ section {
 .service-card h3 {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--accent-khaki);
+    background: linear-gradient(90deg, var(--accent-khaki), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
 }
 
 .service-card p {
@@ -640,12 +710,44 @@ section {
 }
 
 .service-card__list li {
-    background-color: rgba(213, 217, 196, 0.1);
-    color: var(--accent-khaki);
+    background: rgba(10, 16, 26, 0.3);
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    /* Цвет текста как в параграфах */
+    color: #aab2c0;
+    /* Градиентная обводка */
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+/* Создаем градиентную обводку с помощью псевдоэлемента */
+.service-card__list li::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(90deg, var(--accent-khaki), var(--accent-blue));
+    border-radius: 21px; /* На 1px больше, чем у самого элемента */
+    z-index: -1;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.service-card__list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.service-card__list li:hover::before {
+    opacity: 0.8;
 }
 
 .bento-item p {
@@ -724,6 +826,7 @@ section {
 
 .case-card:hover img {
     transform: scale(1.05); /* Уменьшаем масштаб увеличения при наведении */
+    filter: brightness(1); /* Возвращаем нормальную яркость при наведении */
 }
 
 .case-card img {
@@ -732,8 +835,8 @@ section {
     object-fit: cover;
     object-position: center;
     display: block;
-    transition: transform 0.3s ease; /* Уменьшаем время анимации */
-    filter: brightness(0.85);
+    transition: all 0.3s ease; /* Изменено на all для анимации фильтра */
+    filter: brightness(0.4); /* Сильное затемнение изображений в состоянии покоя */
 }
 
 .case-card__overlay {
@@ -768,14 +871,28 @@ section {
     width: 36px;
     height: 36px;
     border-radius: 4px;
-    background-color: rgba(213, 217, 196, 0.1);
+    background: linear-gradient(90deg, rgba(213, 217, 196, 0.2), rgba(191, 219, 254, 0.2));
     transition: all 0.3s ease;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .case-card__link:hover {
-    background-color: rgba(213, 217, 196, 0.2);
+    background: linear-gradient(90deg, rgba(213, 217, 196, 0.4), rgba(191, 219, 254, 0.4));
     transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Стилизация SVG-иконок в ссылках */
+.case-card__link svg path {
+    stroke: url(#icon-gradient) !important;
+    transition: all 0.3s ease;
+}
+
+.case-card__link:hover svg path {
+    stroke-width: 2;
 }
 
 .case-card__overlay h3 {
@@ -1111,6 +1228,12 @@ section {
         height: 300px;
     }
     
+    /* Выравнивание подзаголовка по уровню заголовка в разделе "Примеры наших работ" */
+    #cases .container p {
+        padding-left: 20px;
+        margin-left: 0;
+    }
+    
     .portfolio-carousel__title {
         font-size: 1.3rem;
     }
@@ -1372,6 +1495,14 @@ section {
     
     #services {
         padding-top: 0.5rem;
+    }
+    
+    /* Фиксированный размер иконок в разделе преимуществ */
+    .benefit-item svg {
+        width: 24px !important;
+        height: 24px !important;
+        min-width: 24px !important;
+        min-height: 24px !important;
     }
 
     .header .container {
